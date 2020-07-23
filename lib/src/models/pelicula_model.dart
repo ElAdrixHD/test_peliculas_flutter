@@ -87,4 +87,12 @@ class Pelicula {
       return "https://image.tmdb.org/t/p/w500/$posterPath";
     }
   }
+
+  String getBackgroundImage(){
+    if(posterPath == null){
+      return null;
+    }else{
+      return "https://image.tmdb.org/t/p/w500/$backdropPath";
+    }
+  }
 }
