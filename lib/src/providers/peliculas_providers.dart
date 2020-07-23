@@ -35,6 +35,17 @@ class PeliculasProvider{
 
   }
 
+  Future<List<Pelicula>> buscarPelicula(String query) async{
+    final _url = Uri.https(_host,"3/search/movie", {
+      "api_key": _apiKey,
+      "language": _laguage,
+      "query" : query,
+    });
+
+    return await peticionHTTP(_url);
+
+  }
+
   Future<List<Actor>> getElenco(int id) async{
 
     final _url = Uri.https(_host, "3/movie/${id.toString()}/credits", {

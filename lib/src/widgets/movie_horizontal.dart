@@ -33,17 +33,23 @@ class MovieHorizontal extends StatelessWidget {
   }
 
   Widget _crearTarjeta(Size _screenSize,BuildContext context, Pelicula e){
+
+    e.uuid = "${e.id}-poster";
+
     final _card = Container(
       margin: EdgeInsets.only(right: 15.0),
       child: Column(
         children: <Widget>[
-          ClipRRect(
-            borderRadius: BorderRadius.circular(20.0),
-            child: FadeInImage(
-              image: (e.getPosterImage() == null) ? AssetImage("assets/no-image.jpg"): NetworkImage(e.getPosterImage()),
-              placeholder: AssetImage("assets/loading.gif"),
-              fit: BoxFit.cover,
-              height:  _screenSize.height*0.18,
+          Hero(
+            tag: e.uuid,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(20.0),
+              child: FadeInImage(
+                image: (e.getPosterImage() == null) ? AssetImage("assets/no-image.jpg"): NetworkImage(e.getPosterImage()),
+                placeholder: AssetImage("assets/loading.gif"),
+                fit: BoxFit.cover,
+                height:  _screenSize.height*0.18,
+              ),
             ),
           ),
           Text(e.title, overflow: TextOverflow.ellipsis, style: Theme.of(context).textTheme.subtitle1,),

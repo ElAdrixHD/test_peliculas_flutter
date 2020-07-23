@@ -31,6 +31,7 @@ class Pelicula {
     this.releaseDate,
   });
 
+  String uuid= "";
   double popularity;
   int voteCount;
   bool video;

@@ -43,11 +43,14 @@ class PeliculaDetalle extends StatelessWidget {
       pinned: true,
       flexibleSpace: FlexibleSpaceBar(
         title: Text(pelicula.title, style: TextStyle(color: Colors.white,fontSize: 16.0),),
-        background: FadeInImage(
-          image: NetworkImage(pelicula.getBackgroundImage()),
-          placeholder: AssetImage("assets/loading.gif"),
-          fit: BoxFit.cover,
-          fadeInDuration: Duration(milliseconds: 200),
+        background: Hero(
+          tag: pelicula.uuid,
+          child: FadeInImage(
+            image: NetworkImage(pelicula.getBackgroundImage()),
+            placeholder: AssetImage("assets/loading.gif"),
+            fit: BoxFit.cover,
+            fadeInDuration: Duration(milliseconds: 200),
+          ),
         ),
         centerTitle: true,
       ),
@@ -90,7 +93,7 @@ class PeliculaDetalle extends StatelessWidget {
   Widget _descripcion(Pelicula pelicula) {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 20.0),
-      child: Text(pelicula.overview, textAlign: TextAlign.justify,),
+      child: Text((pelicula.overview.isEmpty)? "Sin sinopsis": pelicula.overview, textAlign: TextAlign.justify,),
     );
   }
 
