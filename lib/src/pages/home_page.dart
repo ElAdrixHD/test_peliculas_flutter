@@ -6,8 +6,10 @@ import 'package:peliculas/src/widgets/movie_horizontal.dart';
 
 class HomePage extends StatelessWidget {
   final _peliculas = PeliculasProvider();
+
   @override
   Widget build(BuildContext context) {
+    _peliculas.getPopularCines();
     return Scaffold(
       appBar: AppBar(
         title: Text("Peliculas en cines"),
@@ -32,7 +34,6 @@ class HomePage extends StatelessWidget {
   }
 
   Widget _swiperCard() {
-
 
     return FutureBuilder(
       future: _peliculas.getEnCines(),
@@ -59,11 +60,11 @@ class HomePage extends StatelessWidget {
         children: <Widget>[
           Container(padding: EdgeInsets.only(left: 20.0),child: Text("Populares", style: Theme.of(context).textTheme.headline5,)),
           SizedBox(height: 20.0,),
-          FutureBuilder(
-            future: _peliculas.getPopularCines(),
+          StreamBuilder(
+            stream: _peliculas.popularesStream,
             builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
               if(snapshot.hasData){
-                return MovieHorizontal(peliculas: snapshot.data,);
+                return MovieHorizontal(peliculas: snapshot.data,siguientePagina: _peliculas.getPopularCines,);
               }else{
                 return Center(child: CircularProgressIndicator());
               }

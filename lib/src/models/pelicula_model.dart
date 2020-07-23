@@ -82,7 +82,7 @@ class Pelicula {
 
   String getPosterImage(){
     if(posterPath == null){
-      return "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn2.iconfinder.com%2Fdata%2Ficons%2Fperfect-flat-icons-2%2F512%2FCancel_delete_remove_stop_x_no_close_cross.png&f=1&nofb=1";
+      return null;
     }else{
       return "https://image.tmdb.org/t/p/w500/$posterPath";
     }
